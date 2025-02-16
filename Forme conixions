@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Growzy</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+            color: #333333;
+            text-align: center;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            border-top: 5px solid #FFD700;
+            background: #FFF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #666666;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #F5F5F5;
+            color: #444;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #E0E0E0;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function toggleForm() {
+            let ageGroup5_9 = document.querySelector("input[name='age'][value='5-9']").checked;
+            let ageGroup10_16 = document.querySelector("input[name='age'][value='10-16']").checked;
+            
+            document.getElementById("form_5_9").classList.toggle("hidden", !ageGroup5_9);
+            document.getElementById("form_10_16").classList.toggle("hidden", !ageGroup10_16);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Bus Growzy</h2>
+        <h4>Nous proposerons des ateliers éducatifs amusants chaque semaine (mardi et samedi) à l’école Fanoun Blida dans le but d’aider les enfants à acquérir de nouvelles compétences dans des domaines tels que la robotique, le développement de sites Web, l’agriculture et autres, tout en passant du temps de qualité à développer leur créativité et leurs talents.</h4>
+        <h4>Pour vos demandes : 0791303260 / 0772262596</h4>
+
+        <form>
+            <h4>Nom et prénom du tuteur</h4>
+            <input type="text" name="tuteur" required>
+
+            <h4>Numéro de téléphone</h4>
+            <input type="tel" name="telephone" required>
+
+            <h4>Email</h4>
+            <input type="email" name="email" required>
+
+            <h4>Messagerie électronique</h4>
+            <input type="text" name="messagerie">
+
+            <h4>Le niveau scolaire de l’enfant</h4>
+            <input type="text" name="niveau">
+
+            <h4>Prénom et nom de votre enfant</h4>
+            <input type="text" name="enfant" required>
+
+            <h4>Votre enfant est de la classe</h4>
+            <label><input type="checkbox" name="age" value="5-9" onclick="toggleForm()"> 5 à 9 ans</label>
+            <label><input type="checkbox" name="age" value="10-16" onclick="toggleForm()"> 10 à 16 ans</label>
+        </form>
+    </div>
+
+    <div id="form_5_9" class="container hidden">
+        <h2>Catégorie 5 à 9 ans</h2>
+        <form>
+            <label>Vous souhaitez rejoindre :</label>
+            <p>(Vous pouvez choisir un ou plusieurs ateliers)</p>
+            <label><input type="checkbox" name="atelier" value="agriculture"> Agriculture - 700 DA</label>
+            <label><input type="checkbox" name="atelier" value="cuisine"> Cuisine - 700 DA</label>
+            <label><input type="checkbox" name="atelier" value="medical"> Formation médicale - 700 DA</label>
+            <label><input type="checkbox" name="atelier" value="electrique"> Ingénierie électrique - 700 DA</label>
+            <label><input type="checkbox" name="atelier" value="electrique_avance"> Ingénierie électrique (avec kit) - 1000 DA</label>
+            <textarea name="ajout" placeholder="Ajouter un commentaire..."></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+
+    <div id="form_10_16" class="container hidden">
+        <h2>Catégorie 10 à 16 ans</h2>
+        <form>
+            <label>Vous souhaitez rejoindre :</label>
+            <p>(Vous pouvez choisir un ou plusieurs ateliers)</p>
+            <label><input type="checkbox" name="atelier" value="robotique"> Robotique - 1300 DA</label>
+            <label><input type="checkbox" name="atelier" value="robotique_kit"> Robotique (avec kit) - 1500 DA</label>
+            <label><input type="checkbox" name="atelier" value="ia"> Intelligence artificielle - 1300 DA</label>
+            <label><input type="checkbox" name="atelier" value="dev_web"> Développement web - 1300 DA</label>
+            <label><input type="checkbox" name="atelier" value="dev_web_kit"> Développement web (avec kit) - 1500 DA</label>
+            <textarea name="ajout" placeholder="Ajouter un commentaire..."></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</body>
+</html>
