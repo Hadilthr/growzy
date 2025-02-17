@@ -1,0 +1,103 @@
+CSS code 
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf7f0;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.teacher-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.teacher-card img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.teacher-card .info h3 {
+    margin: 10px 0 5px;
+    color: #d9415c;
+}
+
+.teacher-card .info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a img {
+    width: 25px;
+    margin: 0 5px;
+}
+
+.join-message {
+    background-color: #ffb6c1;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.gallery-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+footer {
+    background: linear-gradient(to top, #ffb6c1, #ffc8d8);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.footer-logo h2 {
+    font-family: 'Comic Sans MS', cursive;
+    color: #4a90e2;
+}
+
+.contact p {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: 0.8;
+}
