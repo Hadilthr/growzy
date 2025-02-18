@@ -1,0 +1,20 @@
+* {
+    font-family: "Outfit", serif;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    top: 0;
+    left: 0;
+    right: 0;   }
+ 
+  .dev{
+    display: flex;
+    justify-content: center;
+    background: rgb(214, 61, 61);
+   
+   
+  }

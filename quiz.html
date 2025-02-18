@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق اختبار</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; direction: rtl; background-color: #fdf1f3; }
+        .quiz-container { width: 90%; margin: 50px; }
+        .question { font-size: 18px; font-weight: bold; margin: 20px 0; }
+        .options button { display: block; width: 100%; padding: 10px; margin: 5px 0; cursor: pointer; }
+        .correct { background-color: rgb(46, 142, 2); color: white; }
+        .wrong { background-color: rgba(255, 0, 0, 0.999); color: white; }
+        #score { font-size: 20px; margin-top: 20px; }
+        .hidden { display: none; }
+        header { background: #f4f4f4; padding: 10px;height: 40px ;justify-content: space-between; }
+        header img { max-width: 200px;height: 50px ;justify-content: space-between;}
+        header { background-color: #fad1e6;
+        border-radius: 20pt;}
+        button {color: #080007;margin: 40px;padding: 30px;border-radius: 20px;
+            background-color: #f8c8d8;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);font-size: 22px;
+            border: 2px solid #e91e63; height: 100px;width: 500px;}
+
+        h1 { color: #40bdc8;;font-weight: bold;font-size: 50px;}
+        .question{font-size: 30px;font-weight: bold;margin: 40;}
+        button:hover{
+            color: #046d68;
+        }
+
+
+       
+    </style>
+</head>
+<body>
+    <header>
+        <img src="image/LOGO-removebg-preview.png" alt="gowzy">
+    </header>
+    <div class="quiz-container">
+        <div id="category-selection">
+            <h1>اختر فئة الأسئلة</h1>
+            <button onclick="startQuiz(5)">الأطفال من 5 إلى 9 سنوات</button>
+            <button onclick="startQuiz(10)">الأطفال من 10 إلى 16 سنة</button>
+        </div>
+        <div id="quiz" class="hidden"></div>
+        <div id="score" class="hidden">النقاط: 0</div>
+    </div>
+    
+    <script>
+        const quizData = {
+            5: [
+                { question: "ما هو البحر الذي يفصل بين قارة أفريقيا وأوروبا؟", options: ["البحر الأبيض المتوسط", "البحر الأحمر", "البحر الأسود", "بحر العرب"], answer: 0 },
+                { question: "ما هو المعدن الذي تصنع منه العملات المعدنية؟", options: ["الحديد", "النحاس", "الذهب", "الألماس"], answer: 1 },
+                { question: "ما هو اسم صغير الأسد؟", options: ["شبل", "عجل", "جرو", "مهر"], answer: 0 },
+                { question: "أين تقع مدينة غزة؟", options: ["الجزائر", "فلسطين", "مصر", "المغرب"], answer: 1 },
+                { question: "ما هو الغاز الذي نتنفسه ليبقينا على قيد الحياة؟", options: ["الأكسجين", "الهيدروجين", "ثاني أكسيد الكربون", "النيتروجين"], answer: 0 },
+                { question: "ما هي العملة المستخدمة في الجزائر؟", options: ["الدينار", "الدولار", "اليورو", "الدرهم"], answer: 0 },
+                { question: "كم عدد الألوان في قوس قزح؟", options: ["5", "6", "7", "8"], answer: 2 },
+                { question: "ما هو الحيوان البحري الذي يمتلك 8 أرجل؟", options: ["الأخطبوط", "الدولفين", "الحوت", "السمكة"], answer: 0 },
+                { question: "ما هو الحيوان الذي يسمى \"سفينة الصحراء\"؟", options: ["الفيل", "الجمل", "الحصان", "النسر"], answer: 1 },
+                { question: "ما هو أسرع حيوان على وجه الأرض؟", options: ["الحصان", "الفهد", "النمر", "الأرنب"], answer: 1 }
+            ],
+            10: [
+                { question: "ما هو الغاز الذي يشكل الجزء الأكبر من الغلاف الجوي للأرض؟", options: ["الأكسجين", "ثاني أكسيد الكربون", "النيتروجين", "الهيدروجين"], answer: 2 },
+                { question: "من هو مؤلف رواية \"البؤساء\"؟", options: ["تشارلز ديكنز", "فيكتور هوغو", "ليو تولستوي", "ألكسندر دوما"], answer: 1 },
+                { question: "أي كوكب يعرف باسم \"الكوكب الأزرق\"؟", options: ["الأرض", "نبتون", "أورانوس", "الزهرة"], answer: 0 },
+                { question: "ما هي عاصمة إيطاليا؟", options: ["روما", "ميلانو", "نابولي", "فلورنسا"], answer: 0 },
+                { question: "كم عدد أضلاع المثلث؟", options: ["2", "3", "4", "5"], answer: 1 },
+                { question: "ما هو العنصر الكيميائي الذي رمزه \"O\"؟", options: ["الأوكسجين", "الذهب", "الحديد", "الأوزميوم"], answer: 0 },
+                { question: "كم عدد اللاعبين في فريق كرة القدم؟", options: ["9", "10", "11", "12"], answer: 2 },
+                { question: "ما هو أطول جبل في العالم؟", options: ["جبل كليمنجارو", "جبل إيفرست", "جبل الألب", "جبل أكونكاجوا"], answer: 1 },
+                { question: "ما هو عدد كواكب المجموعة الشمسية؟", options: ["7", "8", "9", "10"], answer: 1 },
+                { question: "ما هي أكبر قارة في العالم من حيث المساحة؟", options: ["أفريقيا", "آسيا", "أوروبا", "أمريكا الجنوبية"], answer: 1 }
+            ]
+        };
+        let currentQuiz = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        function startQuiz(ageGroup) {
+            document.getElementById("category-selection").classList.add("hidden");
+            document.getElementById("quiz").classList.remove("hidden");
+            document.getElementById("score").classList.remove("hidden");
+            currentQuiz = quizData[ageGroup];
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
+        }
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuiz.length) {
+                document.getElementById("quiz").innerHTML = `<h1>لقد أكملت الاختبار!</h1><p>درجتك: ${score}/${currentQuiz.length}</p>`;
+                return;
+            }
+            let questionData = currentQuiz[currentQuestionIndex];
+            let quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = `
+                <div class="question">${questionData.question}</div>
+                <div class="options">
+                    ${questionData.options.map((opt, index) => `<button onclick="checkAnswer(${index})">${opt}</button>`).join("")}
+                </div>
+            `;
+        }
+        function checkAnswer(selectedIndex) {
+            let correctIndex = currentQuiz[currentQuestionIndex].answer;
+            let buttons = document.querySelectorAll(".options button");
+            if (selectedIndex === correctIndex) {
+                score++;
+                buttons[selectedIndex].classList.add("correct");
+            } else {
+                buttons[selectedIndex].classList.add("wrong");
+            }
+            setTimeout(() => {
+                currentQuestionIndex++;
+                showQuestion();
+            }, 1000);
+            document.getElementById("score").innerText = `النقاط: ${score}`;
+        }
+    </script>
+</body>
+</html>
